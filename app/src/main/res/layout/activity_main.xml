@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ConstraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gridLayout">
+
+        <Button
+            android:id="@+id/zeroButton"
+            android:layout_width="194dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:text="@string/zero"
+            android:textSize="36sp" />
+
+        <Button
+            android:id="@+id/periodButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/period"
+            android:textSize="36sp" />
+
+        <Button
+            android:id="@+id/equalsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:backgroundTint="#CF6B14"
+            android:text="@string/equals"
+            android:textSize="36sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/outputView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="#000000"
+        android:gravity="bottom|end"
+        android:paddingEnd="10dp"
+        android:text="0"
+        android:textAlignment="gravity"
+        android:textColor="#FFFFFF"
+        android:textSize="56sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.gridlayout.widget.GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingStart="10dp"
+        android:paddingTop="50dp"
+        android:paddingRight="10dp"
+        app:alignmentMode="alignBounds"
+        app:columnCount="4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/outputView"
+        app:rowCount="4">
+
+        <Button
+            android:id="@+id/acButton"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#838181"
+            android:text="@string/allClear"
+            android:textSize="36sp"
+            app:layout_column="0"
+            app:layout_gravity="fill_horizontal"
+            app:layout_row="0" />
+
+        <Button
+            android:id="@+id/sevenButton"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/seven"
+            android:textSize="36sp"
+            app:layout_column="0"
+            app:layout_gravity="fill_horizontal"
+            app:layout_row="1" />
+
+        <Button
+            android:id="@+id/eightButton"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/eight"
+            android:textSize="36sp"
+            app:layout_column="1"
+            app:layout_gravity="fill_horizontal"
+            app:layout_row="1" />
+
+        <Button
+            android:id="@+id/nineButton"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/nine"
+            android:textSize="36sp"
+            app:layout_column="2"
+            app:layout_gravity="fill_horizontal"
+            app:layout_row="1" />
+
+        <Button
+            android:id="@+id/multiplyButton"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#CF6B14"
+            android:text="@string/multiply"
+            android:textSize="36sp"
+            app:layout_column="3"
+            app:layout_gravity="fill_horizontal"
+            app:layout_row="1" />
+
+        <Button
+            android:id="@+id/negativeButton"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#838181"
+            android:text="@string/negative"
+            android:textSize="36sp"
+            app:layout_column="1"
+            app:layout_gravity="fill_horizontal"
+            app:layout_row="0" />
+
+        <Button
+            android:id="@+id/percentButton"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#838181"
+            android:text="@string/percent"
+            android:textColor="#000000"
+            android:textSize="36sp"
+            app:layout_column="2"
+            app:layout_gravity="fill_horizontal"
+            app:layout_row="0" />
+
+        <Button
+            android:id="@+id/fourButton"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/four"
+            android:textSize="36sp"
+            app:layout_column="0"
+            app:layout_gravity="fill_horizontal"
+            app:layout_row="2" />
+
+        <Button
+            android:id="@+id/fiveButton"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/five"
+            android:textSize="36sp"
+            app:layout_column="1"
+            app:layout_gravity="fill_horizontal"
+            app:layout_row="2" />
+
+        <Button
+            android:id="@+id/sixButton"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/six"
+            android:textSize="36sp"
+            app:layout_column="2"
+            app:layout_gravity="fill_horizontal"
+            app:layout_row="2" />
+
+        <Button
+            android:id="@+id/subtractButton"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#CF6B14"
+            android:text="@string/minus"
+            android:textSize="36sp"
+            app:layout_column="3"
+            app:layout_gravity="fill_horizontal"
+            app:layout_row="2" />
+
+        <Button
+            android:id="@+id/oneButton"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/one"
+            android:textSize="36sp"
+            app:layout_column="0"
+            app:layout_gravity="fill_horizontal"
+            app:layout_row="3" />
+
+        <Button
+            android:id="@+id/divisionButton"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#CF6B14"
+            android:text="@string/division"
+            android:textSize="36sp"
+            app:layout_column="3"
+            app:layout_gravity="fill_horizontal"
+            app:layout_row="0" />
+
+        <Button
+            android:id="@+id/twoButton"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/two"
+            android:textSize="36sp"
+            app:layout_column="1"
+            app:layout_gravity="fill_horizontal"
+            app:layout_row="3" />
+
+        <Button
+            android:id="@+id/threeButton"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/three"
+            android:textSize="36sp"
+            app:layout_column="2"
+            app:layout_gravity="fill_horizontal"
+            app:layout_row="3" />
+
+        <Button
+            android:id="@+id/plusButton"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#CF6B14"
+            android:text="@string/plus"
+            android:textSize="36sp"
+            app:layout_column="3"
+            app:layout_gravity="fill_horizontal"
+            app:layout_row="3" />
+
+    </androidx.gridlayout.widget.GridLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
