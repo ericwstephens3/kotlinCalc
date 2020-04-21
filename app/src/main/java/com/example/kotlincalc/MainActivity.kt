@@ -14,6 +14,11 @@ class MainActivity : AppCompatActivity(), Calculator {
     //                  Global Vars
     //////////////////////////////////////////////
 
+    private var DIVISION = 0
+    private var MUTLTIPLICATION = 1
+    private var ADDITION = 2
+    private var SUBTRACTION = 3
+
     private lateinit var acBtn : Button
     private lateinit var percentageBtn : Button
     private lateinit var negativeBtn : Button
@@ -35,6 +40,11 @@ class MainActivity : AppCompatActivity(), Calculator {
     private lateinit var equalsBtn : Button
     private lateinit var outputText : TextView
     private var expression = ""
+    private var isDivision = false
+    private var isMultiplication = false
+    private var isAddition = false
+    private var isSubtraction = false
+
 
 
     ///////////////////////////////////////////////////////
@@ -71,12 +81,16 @@ class MainActivity : AppCompatActivity(), Calculator {
         acBtn.setOnClickListener { clear() }
         percentageBtn.setOnClickListener { changePercentage() }
         negativeBtn.setOnClickListener { negate() }
+        divisionBtn.setOnClickListener {
+            reverseColor(DIVISION)
+        }
 
     }
 
     private fun clear(){
         outputText.setText("0")
         expression = ""
+        changeBoolean(5) //anything except 1-3 clears booleans
     }
 
     private fun changePercentage(){
@@ -87,10 +101,71 @@ class MainActivity : AppCompatActivity(), Calculator {
         outputText.setText(multiply(outputText.text.toString().toInt(), -1))
     }
 
-    private fun reverseColor (btn: Button){
-        val fg = btn.backgroundTintList
-        val fontColor = btn.currentTextColor
+    private fun reverseColor (value: Int){
 
-        btn.setBackgroundTintList(ColorStateList.valueOf(resources.))
+        var fg: ColorStateList
+        var fontColor: Int
+        when (value) {
+            0 -> {
+                fg = divisionBtn.backgroundTintList
+                fontColor = divisionBtn.currentTextColor
+                divisionBtn.backgroundTintList = ColorStateList.valueOf(fontColor)
+                divisionBtn.setTextColor(fg)
+            }
+            1 -> {
+                fg = multiplyBtn.backgroundTintList
+                fontColor = multiplyBtn.currentTextColor
+                multiplyBtn.backgroundTintList = ColorStateList.valueOf(fontColor)
+                multiplyBtn.setTextColor(fg)
+            }
+            2 -> {
+                fg = plusBtn.backgroundTintList
+                fontColor = plusBtn.currentTextColor
+                plusBtn.backgroundTintList = ColorStateList.valueOf(fontColor)
+                plusBtn.setTextColor(fg)
+            }
+            else -> {
+                fg = subtractBtn.backgroundTintList
+                fontColor = subtractBtn.currentTextColor
+                subtractBtn.backgroundTintList = ColorStateList.valueOf(fontColor)
+                subtractBtn.setTextColor(fg)
+            }
+        }
+        changeBoolean(value)
+    }
+
+    private fun changeBoolean(value: Int){
+        when (value){
+            0 ->{
+                if (isDivision) isDivision = false else isDivision = true
+                isMultiplication = false
+                isAddition = false
+                isSubtraction = false
+            }
+            1 ->{
+                isDivision = false
+                isMultiplication = true
+                isAddition = false
+                isSubtraction = false
+            }
+            2 ->{
+                isDivision = false
+                isMultiplication = false
+                isAddition = true
+                isSubtraction = false
+            }
+            3 ->{
+                isDivision = false
+                isMultiplication = false
+                isAddition = false
+                isSubtraction = true
+            }
+            else -> {
+                isDivision = false
+                isMultiplication = true
+                isAddition = false
+                isSubtraction = false
+            }
+        }
     }
 }
