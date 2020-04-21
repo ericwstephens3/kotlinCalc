@@ -1,12 +1,12 @@
 package com.example.kotlincalc
 
-import android.content.Context
 import android.content.res.ColorStateList
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_main.view.*
+import androidx.appcompat.app.AppCompatActivity
+import java.util.*
+
 
 class MainActivity : AppCompatActivity(), Calculator {
 
@@ -14,10 +14,10 @@ class MainActivity : AppCompatActivity(), Calculator {
     //                  Global Vars
     //////////////////////////////////////////////
 
-    private var DIVISION = 0
-    private var MUTLTIPLICATION = 1
-    private var ADDITION = 2
-    private var SUBTRACTION = 3
+    private val DIVISION = 0
+    private val MULTIPLICATION = 1
+    private val ADDITION = 2
+    private val SUBTRACTION = 3
 
     private lateinit var acBtn : Button
     private lateinit var percentageBtn : Button
@@ -39,11 +39,9 @@ class MainActivity : AppCompatActivity(), Calculator {
     private lateinit var periodBtn : Button
     private lateinit var equalsBtn : Button
     private lateinit var outputText : TextView
-    private var expression = ""
-    private var isDivision = false
-    private var isMultiplication = false
-    private var isAddition = false
-    private var isSubtraction = false
+    private var prevNum = 0
+    private var num = 0
+    private var booleans : BitSet = BitSet(4)
 
 
 
@@ -54,7 +52,6 @@ class MainActivity : AppCompatActivity(), Calculator {
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         //UI references
         acBtn = findViewById(R.id.acButton)
         percentageBtn = findViewById(R.id.percentButton)
@@ -82,15 +79,28 @@ class MainActivity : AppCompatActivity(), Calculator {
         percentageBtn.setOnClickListener { changePercentage() }
         negativeBtn.setOnClickListener { negate() }
         divisionBtn.setOnClickListener {
-            reverseColor(DIVISION)
+            reverseColor(this.divisionBtn, DIVISION)
+        }
+        multiplyBtn.setOnClickListener{
+            reverseColor(this.multiplyBtn, MULTIPLICATION)
+        }
+        subtractBtn.setOnClickListener{
+            reverseColor(this.subtractBtn, SUBTRACTION)
+        }
+        plusBtn.setOnClickListener{
+            reverseColor(this.plusBtn, ADDITION)
+        }
+        oneBtn.setOnClickListener{
+
         }
 
     }
 
     private fun clear(){
-        outputText.setText("0")
-        expression = ""
-        changeBoolean(5) //anything except 1-3 clears booleans
+        outputText.text= "0"
+        num = 0
+        prevNum = 0
+        booleans.clear()
     }
 
     private fun changePercentage(){
@@ -101,71 +111,50 @@ class MainActivity : AppCompatActivity(), Calculator {
         outputText.setText(multiply(outputText.text.toString().toInt(), -1))
     }
 
-    private fun reverseColor (value: Int){
+    private fun reverseColor (btn: Button, value: Int){
 
-        var fg: ColorStateList
-        var fontColor: Int
-        when (value) {
-            0 -> {
-                fg = divisionBtn.backgroundTintList
-                fontColor = divisionBtn.currentTextColor
-                divisionBtn.backgroundTintList = ColorStateList.valueOf(fontColor)
-                divisionBtn.setTextColor(fg)
-            }
-            1 -> {
-                fg = multiplyBtn.backgroundTintList
-                fontColor = multiplyBtn.currentTextColor
-                multiplyBtn.backgroundTintList = ColorStateList.valueOf(fontColor)
-                multiplyBtn.setTextColor(fg)
-            }
-            2 -> {
-                fg = plusBtn.backgroundTintList
-                fontColor = plusBtn.currentTextColor
-                plusBtn.backgroundTintList = ColorStateList.valueOf(fontColor)
-                plusBtn.setTextColor(fg)
-            }
-            else -> {
-                fg = subtractBtn.backgroundTintList
-                fontColor = subtractBtn.currentTextColor
-                subtractBtn.backgroundTintList = ColorStateList.valueOf(fontColor)
-                subtractBtn.setTextColor(fg)
-            }
-        }
+        var fg: ColorStateList = btn.backgroundTintList
+        var fontColor: Int = btn.currentTextColor
+        btn.backgroundTintList = ColorStateList.valueOf(fontColor)
+        btn.setTextColor(fg)
+
         changeBoolean(value)
     }
 
     private fun changeBoolean(value: Int){
-        when (value){
-            0 ->{
-                if (isDivision) isDivision = false else isDivision = true
-                isMultiplication = false
-                isAddition = false
-                isSubtraction = false
-            }
-            1 ->{
-                isDivision = false
-                isMultiplication = true
-                isAddition = false
-                isSubtraction = false
-            }
-            2 ->{
-                isDivision = false
-                isMultiplication = false
-                isAddition = true
-                isSubtraction = false
-            }
-            3 ->{
-                isDivision = false
-                isMultiplication = false
-                isAddition = false
-                isSubtraction = true
-            }
-            else -> {
-                isDivision = false
-                isMultiplication = true
-                isAddition = false
-                isSubtraction = false
+        booleans.clear()
+        booleans.set(value)
+    }
+
+    private fun getBoolean(): Int{
+        return booleans.nextSetBit(0)
+    }
+
+    private fun equals(){
+        if (prevNum != 0){
+            when (getBoolean()){
+                DIVISION ->{
+                    prevNum /= num
+                    outputText.text = prevNum.toString()
+                }
+                MULTIPLICATION->{
+                    prevNum *= num
+                    outputText.text = prevNum.toString()
+                }
+                SUBTRACTION->{
+                    prevNum -= num
+                    outputText.text = prevNum.toString()
+                }
+                ADDITION->{
+                    prevNum += num
+                    outputText.text = prevNum.toString()
+                }
+                else->{
+                    outputText.text = "0"
+                }
             }
         }
+        else
+            outputText.text = "0"
     }
 }

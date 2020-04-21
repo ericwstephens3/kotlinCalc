@@ -19,29 +19,31 @@
 
         <Button
             android:id="@+id/zeroButton"
-            android:layout_width="194dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_weight="1"
+            android:layout_gravity="fill_horizontal"
+            android:layout_weight="0"
             android:text="@string/zero"
             android:textSize="36sp" />
 
         <Button
             android:id="@+id/periodButton"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_gravity="fill_horizontal"
+            android:layout_weight="0"
             android:text="@string/period"
             android:textSize="36sp" />
 
         <Button
             android:id="@+id/equalsButton"
-            android:layout_width="wrap_content"
+            android:layout_width="111dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
+            android:layout_gravity="fill_horizontal"
+            android:layout_weight="0"
             android:backgroundTint="#CF6B14"
             android:text="@string/equals"
+            android:textColor="#FFFFFF"
             android:textSize="36sp" />
     </LinearLayout>
 
@@ -65,9 +67,7 @@
         android:id="@+id/gridLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:paddingStart="10dp"
         android:paddingTop="50dp"
-        android:paddingRight="10dp"
         app:alignmentMode="alignBounds"
         app:columnCount="4"
         app:layout_constraintEnd_toEndOf="parent"
@@ -122,6 +122,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#CF6B14"
             android:text="@string/multiply"
+            android:textColor="#FFFFFF"
             android:textSize="36sp"
             app:layout_column="3"
             app:layout_gravity="fill_horizontal"
@@ -186,6 +187,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#CF6B14"
             android:text="@string/minus"
+            android:textColor="#FFFFFF"
             android:textSize="36sp"
             app:layout_column="3"
             app:layout_gravity="fill_horizontal"
@@ -207,6 +209,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#CF6B14"
             android:text="@string/division"
+            android:textColor="#FFFFFF"
             android:textSize="36sp"
             app:layout_column="3"
             app:layout_gravity="fill_horizontal"
@@ -238,6 +241,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#CF6B14"
             android:text="@string/plus"
+            android:textColor="#FFFFFF"
             android:textSize="36sp"
             app:layout_column="3"
             app:layout_gravity="fill_horizontal"
